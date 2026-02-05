@@ -205,7 +205,6 @@ def inspect_script_lines(script_name, start_line_number, end_line_number, work_d
     except EnvException:
         raise EnvException(f"cannot find script {script_name}")
 
-
     content = "\n".join(lines[max(int(start_line_number) - 1, 0) : int(end_line_number)])
     return f"Here are the lines (the file ends at line {len(lines)}):\n\n" + content
 

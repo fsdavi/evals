@@ -119,7 +119,12 @@ def list_files(dir_path, work_dir=".", **kwargs):
             ["ls", "-F", os.path.join(work_dir, dir_path)]
         ).decode("utf-8")
         return observation
-    except (subprocess.CalledProcessError, FileNotFoundError, NotADirectoryError, PermissionError) as e:
+    except (
+        subprocess.CalledProcessError,
+        FileNotFoundError,
+        NotADirectoryError,
+        PermissionError,
+    ) as e:
         raise EnvException(f"Cannot list file in the {dir_path} directory: {e}")
 
 
@@ -167,7 +172,13 @@ def copy_file(source, destination, work_dir=".", **kwargs):
         shutil.copyfile(os.path.join(work_dir, source), os.path.join(work_dir, destination))
         observation = f"File {source} copied to {destination}"
         return observation
-    except (FileNotFoundError, IsADirectoryError, PermissionError, shutil.SameFileError, OSError) as e:
+    except (
+        FileNotFoundError,
+        IsADirectoryError,
+        PermissionError,
+        shutil.SameFileError,
+        OSError,
+    ) as e:
         raise EnvException(
             f"File {source} copy to {destination} failed. Check whether the source and destinations are valid. {e}"
         )
