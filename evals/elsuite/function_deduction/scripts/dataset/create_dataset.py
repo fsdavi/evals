@@ -14,8 +14,8 @@ def get_complexity(code: str) -> int:
     # NOTE: ugly but good enough for dataset-creating code
     src = f"def _tmp(x): return {code}"
     ns: dict[str, object] = {}
-    exec(src, {"math": math}, ns)          # define function into ns
-    fn = ns["_tmp"]                        # retrieve it
+    exec(src, {"math": math}, ns)  # define function into ns
+    fn = ns["_tmp"]  # retrieve it
     return len(list(dis.get_instructions(fn)))
 
 
